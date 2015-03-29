@@ -1,35 +1,28 @@
 class Squares
-  attr_accessor :integer
+  attr_reader :integer
 
   def initialize(integer)
     @integer = integer
   end
 
-  def sum_of_squares
+  def process(power, integer)
     total = 0
-    integer = @integer
     until integer < 0
-      total += integer**2
+      total += integer**power
       integer -= 1
     end
     total
   end
 
-  def square_of_sums
-    total = 0
-    integer = @integer
-    until integer < 0
-      total += integer
-      integer -= 1
-    end
-    total**2
+  def sum_of_squares
+    process(2, integer)
   end
 
-  def int
-    Squares.new(integer)
+  def square_of_sums
+    process(1, integer)**2
   end
 
   def difference
-    int.square_of_sums - int.sum_of_squares
+    square_of_sums - sum_of_squares
   end
 end
