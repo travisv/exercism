@@ -1,23 +1,13 @@
 class Robot
-  def initialize
-    @name = ''
+  def name
+    @name ||= generate(2, 'A'..'Z', 26) + generate(3, '0'..'9', 9)
   end
 
   def reset
-    initialize
+    @name = nil
   end
 
-  def name
-    2.times { @name << generate_letters }
-    @name << generate_numbers
-  end
-
-  def generate_letters
-    (rand(26) + 65).to_i.chr
-  end
-
-  def generate_numbers
-    array = 3.times.map { rand(10) }
-    array.join
+  def generate(n, range, sample_size)
+    n.times.collect { range.to_a.slice(rand sample_size) }.join
   end
 end
